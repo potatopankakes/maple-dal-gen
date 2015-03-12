@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<appconfig>
+	<dbType>MYSQL</dbType>
+	<driver>com.mysql.jdbc.Driver</driver>
+ 	<jdbcConnectionString>jdbc:mysql://127.0.0.1/maple</jdbcConnectionString>
+	<databaseIP>127.0.0.1</databaseIP>
+	<databaseCatalog>maple</databaseCatalog>
+	<databaseUsername>tomcat6</databaseUsername>
+	<databasePassword>tomcat6</databasePassword>
+	
+	<projectName>maple</projectName>
+	<topLevel>com.gnoras</topLevel>
+	
+	<schemaStrategy>PARTIAL</schemaStrategy>
+	
+	<sourceTarget>output/maple</sourceTarget>
+	<libPath>src/main/resources</libPath>
+	<sourceFolderName>src/main/java</sourceFolderName>
+	<resourceFolder>src/main/resources</resourceFolder>
+	<testFolderName>src/test/java</testFolderName>
+	<testResourceFolder>src/test/resources</testResourceFolder>
+	
+	<applicationContextFilename>hibernate-beans.xml</applicationContextFilename>
+
+ 	<enableJodaSupport>false</enableJodaSupport>
+	<enableHibernateValidator>true</enableHibernateValidator>
+	<disableSubtypeEnumGeneration>true</disableSubtypeEnumGeneration>
+	<disableCleanTables>true</disableCleanTables>
+	<disableTestRollback>true</disableTestRollback>
+
+	<dbPackageMap>
+		<map schema="maple">
+			<objectPackage>${topLevel}.${projectName}.dal.model</objectPackage>
+			<objectInterfacePackage>${topLevel}.${projectName}.dal.model.interfaces</objectInterfacePackage>
+			<daoPackage>${topLevel}.${projectName}.dal.model.dao</daoPackage>
+			<daoImplPackage>${topLevel}.${projectName}.dal.model.dao.impl</daoImplPackage>
+			<enumPackage>${topLevel}.${projectName}.dal.model.enums</enumPackage>
+			<enumSubtypePackage>${topLevel}.${projectName}.dal.model.enums.subtype</enumSubtypePackage>
+			<factoryPackage>${topLevel}.${projectName}.dal.factories</factoryPackage>
+			<dataPackage>${topLevel}.${projectName}.dal.services</dataPackage>
+		</map>
+	</dbPackageMap>
+	
+<!--
+ 	<treatLinkAsEnum>
+		<schema name="maple">
+			<field src="account.state_id" dstTable="account_state" keyColumnName="enum_name" valueColumnName="name" otherColumnNames="id" otherColumnNames="description" />
+		</schema>
+		<schema name="maple">
+			<field src="transaction.payment_type_id" dstTable="payment_type" keyColumnName="enum_name" valueColumnName="name" otherColumnNames="id" otherColumnNames="description" />
+		</schema>
+	</treatLinkAsEnum> 
+-->
+<!-- 
+ 	<immutableTables>
+		<table generate-static-test="true">maple.account_state</table>
+		<table generate-static-test="true">maple.payment_type</table>
+		<table generate-static-test="true">maple.reward_early_function</table>
+		<table generate-static-test="true">maple.reward_late_function</table>
+	</immutableTables>  
+-->
+	
+	<generatedId>
+		<default idpattern="${DB}_id" generator="UUID" />
+		<map schema="maple"> 
+			<table name="account_state" field="id" generator="assigned" />
+			<table name="country" field="id" generator="assigned" />
+			<table name="country_currency" field="id" generator="assigned" />
+			<table name="country_currency" field="id" generator="assigned" />
+			<table name="country_name" field="id" generator="assigned" />
+			<table name="currency" field="id" generator="assigned" />
+			<table name="currency_name" field="id" generator="assigned" />
+			<table name="language" field="id" generator="assigned" />
+			<table name="language_name" field="id" generator="assigned" />
+			<table name="plan_text" field="id" generator="assigned" />
+			<table name="reward_late_function" field="id" generator="assigned" />
+			<table name="reward_early_function" field="id" generator="assigned" />
+			<table name="offering" field="id" generator="assigned" />
+			<table name="payment_from_cc" field="id" generator="assigned" />
+			<table name="payment_from_paypal" field="id" generator="assigned" />
+			<table name="product_plan" field="id" generator="assigned" />
+			<table name="payment_type" field="id" generator="assigned" />
+			<table name="privilege" field="id" generator="assigned" />
+		<!--
+		-->
+		</map>
+	</generatedId>
+
+<!--
+	<disableBackLinks>
+		<nobackLink from="" to="" from-field="" />
+	</disableBackLinks>
+-->
+
+<!--
+ 	<customPluralization>
+		<rule regexmatch="family_child" regexreplace="FamilyChildren"/>
+		<rule regexmatch="payment_from_cc" regexreplace="aymentsFromCc"/>
+		<rule regexmatch="paymentfrompaypal" regexreplace="PaymentsFromPaypal"/>
+	</customPluralization>
+-->
+	<ignore>
+		<table>*._currtemp</table>
+	</ignore>
+	
+	<naturalKeys>
+		<table name="maple.transaction_item">
+				<key field="transaction_id" />
+				<key field="refund_id " />
+				<key field="purchase_id " />
+		</table>
+	</naturalKeys>
+
+</appconfig>
